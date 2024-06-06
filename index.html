@@ -12,13 +12,9 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <link rel="stylesheet" href="css/style.css">
-    <!-- Convert this to an external style sheet -->
-
 </head>
 
 <body class="d-flex flex-column h-100">
-
-
     <!-- ==== Navigation Section ==== -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top">
         <div class="container-fluid">
@@ -44,7 +40,6 @@
                     <li class="nav-item">
                         <a class="nav-link" target="_blank" href="https://www.remsey.nl">About Remsey</a>
                     </li>
-
                 </ul>
             </div>
         </div>
@@ -69,20 +64,56 @@
                 <input type="text" id="country" name="country"><br><br>
 
                 <label for="mountain">Mountain:</label>
-                <input type="text" id="mountain" name="mountain"><br><br>
+                <select id="mountain" name="mountain">
+                    <option value="">Select a mountain</option>
+                </select><br><br>
 
                 <button type="button" onclick="submitForm()">Submit</button>
             </form>
         </div>
     </main>
 
+    <footer class="footer mt-auto py-3 bg-light sticky-footer">
+        <div class="container-fluid text-center">
+            <span class="text-muted">Place sticky footer content here.</span>
+        </div>
+    </footer>
 
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 
-
-
-
+    <!-- External JavaScript Files -->
+    <script src="js/site.js"></script>
 
     <script>
+        // Fetch mountains data and populate the dropdown
+        fetch("js/mountain.json")
+            .then((response) =>
+            {
+                if (!response.ok)
+                {
+                    throw new Error("Network response was not ok");
+                }
+                return response.json();
+            })
+            .then((data) =>
+            {
+                const mountainSelect = document.getElementById('mountain');
+                data.forEach(mountain =>
+                {
+                    const option = document.createElement('option');
+                    option.value = mountain.name;
+                    option.textContent = mountain.name;
+                    mountainSelect.appendChild(option);
+                });
+            })
+            .catch((error) =>
+            {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+
         function submitForm()
         {
             const name = document.getElementById('name').value;
@@ -91,31 +122,12 @@
             const mountain = document.getElementById('mountain').value;
 
             const queryString = `?name=${encodeURIComponent(name)}&age=${encodeURIComponent(age)}&country=${encodeURIComponent(country)}&mountain=${encodeURIComponent(mountain)}`;
-            const newUrl = "http://127.0.0.1:8000/app.html" + queryString;
+            const newUrl = "app.html" + queryString;
 
             // Redirect to the new URL with query parameters
             window.location.href = newUrl;
         }
     </script>
-</body>
-
-</html>
-
-
-
-<!-- ==== Navigation Section ==== -->
-<footer class="footer mt-auto py-3 bg-light sticky-footer">
-    <div class="container-fluid text-center">
-        <span class="text-muted">Place sticky footer content here.</span>
-    </div>
-</footer>
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
-
-<!--extrernal JavaScript Files-->
-<script src="js/site.js"></script>
 </body>
 
 </html>
