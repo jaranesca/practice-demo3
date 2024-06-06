@@ -48,7 +48,7 @@
     <!-- ==== Main Section ==== -->
     <main class="flex-shrink-0">
         <div class="container">
-            <h1 class="mt-5">Mountain Details</h1>
+            <h1 class="mt-5">You are planning to visit: </h1>
             <div id="mountainDetails"></div>
         </div>
     </main>
@@ -68,39 +68,56 @@
     <script src="js/site.js"></script>
 
     <script>
-        function getQueryParam(param) {
+        function getQueryParam(param)
+        {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(param);
         }
 
-        function displayMountainDetails(mountain) {
+        function displayMountainDetails(mountain)
+        {
             const mountainDetails = document.getElementById('mountainDetails');
+            const name = getQueryParam('name');
+            const myDiv = document.createElement('div');
             mountainDetails.innerHTML = `
-                <h2>${mountain.name}</h2>
-                <p><strong>Height:</strong> ${mountain.height} meters</p>
-                <p><strong>Location:</strong> Latitude ${mountain.location.latitude}, Longitude ${mountain.location.longitude}</p>
-                <p><strong>Country:</strong> ${mountain.country}</p>
-                <p><strong>Range:</strong> ${mountain.range}</p>
-            `;
-        }
+        <h2>Hi ${name}, You adventurous ${mountain.name}</h2>
+        <p><strong>Height:</strong> ${mountain.height} meters</p>
+        <p><strong>Location:</strong> Latitude ${mountain.location.latitude}, Longitude ${mountain.location.longitude}</p>
+        <p><strong>Country:</strong> ${mountain.country}</p>
+        <p><strong>Range:</strong> ${mountain.range}</p>`;
+
+            let anchor = document.createElement("a");
+            anchor.href = `code.html?mountainId=${mountain.name}`;
+            anchor.textContent = "See details";
+            anchor.style.marginTop = "10px";
+            myDiv.appendChild(anchor);
+
+            mountainDetails.appendChild(myDiv); // Changed from mountainDetails.appendChild(div);
+        };
 
         fetch("js/mountain.json")
-            .then((response) => {
-                if (!response.ok) {
+            .then((response) =>
+            {
+                if (!response.ok)
+                {
                     throw new Error("Network response was not ok");
                 }
                 return response.json();
             })
-            .then((data) => {
+            .then((data) =>
+            {
                 const selectedMountain = getQueryParam('mountain');
                 const mountain = data.find(mountain => mountain.name === selectedMountain);
-                if (mountain) {
+                if (mountain)
+                {
                     displayMountainDetails(mountain);
-                } else {
+                } else
+                {
                     document.getElementById('mountainDetails').innerHTML = '<p>No details found for the selected mountain.</p>';
                 }
             })
-            .catch((error) => {
+            .catch((error) =>
+            {
                 console.error('There was a problem with the fetch operation:', error);
             });
     </script>
