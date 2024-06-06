@@ -11,23 +11,11 @@
     <h1>Grab information sended to this page</h1>
     <button id="grabParamsButton" onclick="grabUrlParams()">Grab URL Parameters</button>
     <div id="result"></div>
+    <div id="mountainContainer"></div>
 
+
+    <script src="js/mountain.js"></script>
     <script>
-        function grabUrlParams()
-        {
-            const params = new URLSearchParams(window.location.search);
-            console.log(params);
-            const name = params.get('name');
-            const age = params.get('age');
-            const country = params.get('country');
-
-            const resultDiv = document.getElementById('result');
-            resultDiv.innerHTML = `
-                <p><strong>Name:</strong> ${name ? name : 'N/A'}</p>
-                <p><strong>Age:</strong> ${age ? age : 'N/A'}</p>
-                <p><strong>Country:</strong> ${country ? country : 'N/A'}</p>
-            `
-        };
     </script>
 </body>
 

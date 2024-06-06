@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Mount Everest",
+        "height": 8848,
+        "location": {
+            "latitude": 27.9881,
+            "longitude": 86.9250
+        },
+        "country": "Nepal",
+        "range": "Himalayas"
+    },
+    {
+        "name": "K2",
+        "height": 8611,
+        "location": {
+            "latitude": 35.8818,
+            "longitude": 76.5133
+        },
+        "country": "Pakistan",
+        "range": "Karakoram"
+    },
+    {
+        "name": "Mount Kilimanjaro",
+        "height": 5895,
+        "location": {
+            "latitude": -3.0758,
+            "longitude": 37.3533
+        },
+        "country": "Tanzania",
+        "range": "Eastern Rift mountains"
+    }
+]

@@ -53,77 +53,69 @@
     <!-- ==== Main Section ==== -->
     <main class="flex-shrink-0">
         <div class="container">
-            <h1 class="mt-5">Template with dark fixed navbar and sticky footer</h1>
+            <h1 class="mt-5">Sign up form</h1>
             <p class="lead">Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and
                 CSS. A fixed navbar has been added with padding-top: 60px; on the main > .container.</p>
+
+            <h1>URL String Parameters Demo</h1>
+            <form id="demoForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name"><br><br>
+
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age"><br><br>
+
+                <label for="country">Country:</label>
+                <input type="text" id="country" name="country"><br><br>
+
+                <label for="mountain">Mountain:</label>
+                <input type="text" id="mountain" name="mountain"><br><br>
+
+                <button type="button" onclick="submitForm()">Submit</button>
+            </form>
         </div>
     </main>
 
-        <h1>URL String Parameters Demo</h1>
-        <form id="demoForm">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name"><br><br>
-    
-            <label for="age">Age:</label>
-            <input type="number" id="age" name="age"><br><br>
-    
-            <label for="country">Country:</label>
-            <input type="text" id="country" name="country"><br><br>
-    
-            <button type="button" onclick="submitForm()">Submit</button>
-        </form>
-
-
-      
 
 
 
-        <script>
-            function submitForm() {
-                const name = document.getElementById('name').value;
-                const age = document.getElementById('age').value;
-                const country = document.getElementById('country').value;
-    
-                const queryString = `?name=${encodeURIComponent(name)}&age=${encodeURIComponent(age)}&country=${encodeURIComponent(country)}`;
-                const newUrl = "http://127.0.0.1:8000/app.html" + queryString;
-                
-                // Redirect to the new URL with query parameters
-                window.location.href = newUrl;
-            }
 
-            function grabUrlParams() {
-            const params = new URLSearchParams(window.location.search);
-            console.log(params);
-            const name = params.get('name');
-            const age = params.get('age');
-            const country = params.get('country');
 
-            const resultDiv = document.getElementById('result');
-            resultDiv.innerHTML = `
-                <p><strong>Name:</strong> ${name ? name : 'N/A'}</p>
-                <p><strong>Age:</strong> ${age ? age : 'N/A'}</p>
-                <p><strong>Country:</strong> ${country ? country : 'N/A'}</p>
-            `;
+
+    <script>
+        function submitForm()
+        {
+            const name = document.getElementById('name').value;
+            const age = document.getElementById('age').value;
+            const country = document.getElementById('country').value;
+            const mountain = document.getElementById('mountain').value;
+
+            const queryString = `?name=${encodeURIComponent(name)}&age=${encodeURIComponent(age)}&country=${encodeURIComponent(country)}&mountain=${encodeURIComponent(mountain)}`;
+            const newUrl = "http://127.0.0.1:8000/app.html" + queryString;
+
+            // Redirect to the new URL with query parameters
+            window.location.href = newUrl;
         }
-        </script>
-    </body>
-    </html>
-    
+    </script>
+</body>
+
+</html>
 
 
-    <!-- ==== Navigation Section ==== -->
-    <footer class="footer mt-auto py-3 bg-light sticky-footer">
-        <div class="container-fluid text-center">
-            <span class="text-muted">Place sticky footer content here.</span>
-        </div>
-    </footer>
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
 
-    <!--extrernal JavaScript Files-->
-    <script src="js/site.js"></script>
+<!-- ==== Navigation Section ==== -->
+<footer class="footer mt-auto py-3 bg-light sticky-footer">
+    <div class="container-fluid text-center">
+        <span class="text-muted">Place sticky footer content here.</span>
+    </div>
+</footer>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+
+<!--extrernal JavaScript Files-->
+<script src="js/site.js"></script>
 </body>
 
 </html>
